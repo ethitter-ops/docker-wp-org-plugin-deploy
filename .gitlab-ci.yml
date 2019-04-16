@@ -34,7 +34,7 @@ lint:shell-script:
 build:master:
   stage: deploy
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE/wp-org-plugin-deploy:latest" ./Dockerfile
+    - docker build --pull -t "$CI_REGISTRY_IMAGE/wp-org-plugin-deploy:latest" ./context/
     - docker push "$CI_REGISTRY_IMAGE/wp-org-plugin-deploy:latest"
   only:
     - master
@@ -43,7 +43,7 @@ build:master:
 build:dev:
   stage: deploy
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE/wp-org-plugin-deploy:dev" ./Dockerfile
+    - docker build --pull -t "$CI_REGISTRY_IMAGE/wp-org-plugin-deploy:dev" ./context/
     - docker push "$CI_REGISTRY_IMAGE/wp-org-plugin-deploy:dev"
   except:
     - master
