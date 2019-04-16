@@ -10,7 +10,7 @@ before_script:
 # TESTS
 #
 
-lint-dockerfile:
+lint:dockerfile:
   stage: test
   image: hadolint/hadolint:latest-debian
   before_script:
@@ -19,7 +19,7 @@ lint-dockerfile:
   script:
     - find . -name "Dockerfile" -execdir hadolint {} \;
 
-lint-shell-script:
+lint:shell-script:
   stage: test
   image: koalaman/shellcheck-alpine:latest
   before_script:
@@ -31,7 +31,7 @@ lint-shell-script:
 # IMAGE BUILDS/PUSHES
 #
 
-build-master:
+build:master:
   stage: deploy
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE/wp-org-plugin-deploy:latest" ./Dockerfile
@@ -40,7 +40,7 @@ build-master:
     - master
   when: manual
 
-build-dev:
+build:dev:
   stage: deploy
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE/wp-org-plugin-deploy:dev" ./Dockerfile
