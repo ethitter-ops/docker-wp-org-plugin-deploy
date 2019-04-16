@@ -34,8 +34,8 @@ lint:shell-script:
 build:master:
   stage: deploy
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE/latest" ./context/
-    - docker push "$CI_REGISTRY_IMAGE/latest"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" ./context/
+    - docker push "$CI_REGISTRY_IMAGE:latest"
   only:
     - master
   when: manual
@@ -43,7 +43,7 @@ build:master:
 build:dev:
   stage: deploy
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE/dev" ./context/
-    - docker push "$CI_REGISTRY_IMAGE/dev"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:dev" ./context/
+    - docker push "$CI_REGISTRY_IMAGE:dev"
   except:
     - master
